@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number Roman Numeral Converter</title>
+</head>
+<body ng-app="numAndRomanApp" ng-controller="convertingCtrl">
+<form>
+    <label for="convertId">Enter number or roman:</label><br/>
+    <input id="convertId" type="text" ng-model="inputValues"/>
+    <button ng-click="convert()">Convert</button>
+    {{outputValues}}
+</form>
+<script src="lib/angular/jquery-1.11.3.min.js"></script>
+<script src="lib/angular/angular.min.js"></script>
+<script src="src/Audition.js"></script>
+<script>
+    (function () {
+        "use strict";
+        var numAndRomanApp = angular.module("numAndRomanApp", []);
+
+        numAndRomanApp.controller("convertingCtrl", ConvertingCtrl);
+
+        function ConvertingCtrl($scope) {
+            $scope.inputValues;
+            $scope.outputValues;
+            $scope.convert = function () {
+                if (isNaN($scope.inputValues)) {
+                    $scope.outputValues = romanToNumber($scope.inputValues);
+                } else {
+                    $scope.outputValues = numberToRoman($scope.inputValues);
+                }
+            }//end convert()
+        }// end ConvertingCtrl
+    })();//end IFFE
+</script>
+</body>
+</html>
